@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { useLocation } from "react-router-dom";
-import { PokeContext } from "../../context";
+import { PokeContext } from "../context";
 import { Loader, PokeCard } from "../components";
 export const SearchPage = () => {
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
 
   const { loading, globalPokemons } = useContext(PokeContext);
 

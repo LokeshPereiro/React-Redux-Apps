@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { PokeContext } from "../../context";
+import { PokeContext } from "../context";
 
 export const FilterSideBar = () => {
   const { active, handleCheckbox, setActive } = useContext(PokeContext);

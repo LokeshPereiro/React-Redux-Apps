@@ -1,7 +1,8 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { HomePage, PokemonPage, SearchPage } from "./pokemons/pages";
-import { NavOutlet } from "./pokemons/components";
-export const AppRouter = () => {
+import { HomePage, PokemonPage, SearchPage } from "../pages";
+import { NavOutlet } from "../components";
+
+export const PokeRoutes = () => {
   return (
     <>
       <Routes>

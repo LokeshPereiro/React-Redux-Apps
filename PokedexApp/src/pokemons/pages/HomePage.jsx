@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { PokeContext } from "../../context";
+import { PokeContext } from "../context";
 import { FilterSideBar, PokeList } from "../components";
 
 export const HomePage = () => {
@@ -14,7 +14,7 @@ export const HomePage = () => {
 
   return (
     <>
-      <div className="container-filter container">
+      <div className="container-filter container mt-2">
         <div className="icon-filter" onClick={() => setActive(!active)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -33,8 +33,8 @@ export const HomePage = () => {
           <span>Filtrar</span>
         </div>
       </div>
-      <PokeList />
       <FilterSideBar />
+      <PokeList />
       <div className="container-btn-load-more container">
         {loading ? "" : showLoadBTN}
       </div>

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { PokeContext } from "../../context";
+import { PokeContext } from "../context";
 import { Loader } from "../components";
 
 import { primerMayuscula } from "../../helper";
