@@ -4,16 +4,28 @@ import { Loader } from "./";
 import { PokeCard } from "./";
 
 export const PokeList = () => {
-  const { allPokemons, loading } = useContext(PokeContext);
+  const { allPokemons, loading, filteredPokemons } = useContext(PokeContext);
+  // Si el length the del filtered pokemons es mayor a 0  entonces muestro mi arreglo filtrado sino allPokemons
+
   return (
     <>
       {loading ? (
         <Loader />
       ) : (
         <div className="card-list-pokemon container">
-          {allPokemons?.map((pokemon) => (
-            <PokeCard key={pokemon.id} pokemon={pokemon} />
-          ))}
+          {filteredPokemons.length ? (
+            <>
+              {filteredPokemons.map((pokemon) => (
+                <PokeCard pokemon={pokemon} key={pokemon.id} />
+              ))}
+            </>
+          ) : (
+            <>
+              {allPokemons.map((pokemon) => (
+                <PokeCard pokemon={pokemon} key={pokemon.id} />
+              ))}
+            </>
+          )}
         </div>
       )}
     </>

@@ -55,7 +55,6 @@ export const PokeProvider = ({ children }) => {
       return data;
     });
     const results = await Promise.all(promises);
-
     setGlobalPokemons(results);
     setLoading(false);
   };
@@ -68,14 +67,66 @@ export const PokeProvider = ({ children }) => {
     return data;
   };
 
+  // Filter Function + State
+  const [typeSelected, setTypeSelected] = useState({
+    grass: false,
+    normal: false,
+    fighting: false,
+    flying: false,
+    poison: false,
+    ground: false,
+    rock: false,
+    bug: false,
+    ghost: false,
+    steel: false,
+    fire: false,
+    water: false,
+    electric: false,
+    psychic: false,
+    ice: false,
+    dragon: false,
+    dark: false,
+    fairy: false,
+    unknow: false,
+    shadow: false,
+  });
+
+  const [filteredPokemons, setfilteredPokemons] = useState([]);
+
+  const handleCheckbox = (e) => {
+    setTypeSelected({
+      ...typeSelected,
+      [e.target.name]: e.target.checked,
+    });
+
+    if (e.target.checked) {
+      const filteredResults = globalPokemons.filter((pokemon) =>
+        // hacer el mapeo de types
+        pokemon.types.map((type) => type.type.name).includes(e.target.name)
+      );
+      setfilteredPokemons([...filteredPokemons, ...filteredResults]);
+    } else {
+      // De mi arreglo filtrado
+      const filteredResults = filteredPokemons.filter(
+        (pokemon) =>
+          // Todos los que pokemons no seleccionados
+          !pokemon.types.map((type) => type.type.name).includes(e.target.name)
+      );
+      setfilteredPokemons([...filteredResults]);
+    }
+  };
+
   useEffect(() => {
     getAllPokemons();
-  }, []);
+  }, [offset]);
 
   useEffect(() => {
     getGlobalPokemons();
   }, []);
 
+  const onLoadMorePokemons = () => {
+    setOffset(offset + 50);
+  };
   return (
     <PokeContext.Provider
       value={{
@@ -83,10 +134,14 @@ export const PokeProvider = ({ children }) => {
         onInputChange,
         onResetForm,
         allPokemons,
-        getAllPokemons,
-        getGlobalPokemons,
         getPokemonByID,
+        loading,
         active,
+        setActive,
+        globalPokemons,
+        onLoadMorePokemons,
+        handleCheckbox,
+        filteredPokemons,
       }}
     >
       {children}

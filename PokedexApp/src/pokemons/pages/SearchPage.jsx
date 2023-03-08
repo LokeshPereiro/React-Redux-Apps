@@ -1,5 +1,32 @@
-import React from "react";
-
+import { useContext } from "react";
+import { useLocation } from "react-router-dom";
+import { PokeContext } from "../../context";
+import { Loader, PokeCard } from "../components";
 export const SearchPage = () => {
-  return <div>SearchPage</div>;
+  const location = useLocation();
+  console.log(location);
+
+  const { loading, globalPokemons } = useContext(PokeContext);
+
+  const filteredPokemons = globalPokemons.filter((pokemon) =>
+    pokemon.name.includes(location.state)
+  );
+  // console.log(filteredPokemons);
+
+  return (
+    <div className="container">
+      <p className="p-search">
+        Se encontraron <span>{filteredPokemons.length}</span> resultados:
+      </p>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className="card-list-pokemon container">
+          {filteredPokemons.map((pokemon) => (
+            <PokeCard pokemon={pokemon} key={pokemon.id} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
 };
