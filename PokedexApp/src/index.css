@@ -90,8 +90,8 @@ header form {
 .btn-search {
   border: none;
   outline: none;
-  border-radius: 25px;
-  padding: 15px 30px;
+  border-radius: 5.5px;
+  padding: 5.8px 9px;
   font-family: inherit;
   color: #fff;
   background-color: var(--color-primary);
@@ -447,6 +447,21 @@ Styles of Pokemon Single Page
   color: #000;
 }
 
+.profileContainer {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.iconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconContainer img {
+  width: 40px;
+  margin: 5px;
+}
 @media (max-width: 850px) {
   header {
     padding: 5px 0;

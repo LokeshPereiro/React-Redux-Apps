@@ -1,14 +1,28 @@
 import { useContext } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import logo from "../../assets/logo_poke.png";
+import { AuthContext } from "../../auth/context";
 import { PokeContext } from "../context";
+
+import {
+  logo,
+  pokeball,
+  defaultUser,
+  profile,
+  logout,
+} from "../../assets/images";
 
 export const NavOutlet = () => {
   const { valueSearch, onInputChange } = useContext(PokeContext);
+  const { loggedUser, logOut } = useContext(AuthContext);
+  // console.log(loggedUser);
   const navigate = useNavigate();
 
+  const handleLogout = () => {
+    logOut();
+  };
   const handleSearchValue = (evt) => {
     evt.preventDefault();
+
     navigate("/search", {
       state: valueSearch,
     });
@@ -25,37 +39,23 @@ export const NavOutlet = () => {
 
         {/* Form */}
         <form onSubmit={handleSearchValue}>
-          <div className="form-group">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="icon-search"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-              />
-            </svg>
+          <div className="d-flex align-items-center">
             <input
               type="search"
+              className="form-control"
               name="valueSearch"
-              id=""
               value={valueSearch}
               onChange={onInputChange}
-              placeholder="Busca tu pokemon favorito..."
+              placeholder="Search pokemons..."
             />
           </div>
           <button type="submit" className="btn-search">
-            Buscar
+            <i className="fas fa-search m-1" />
+            Search
           </button>
         </form>
 
         {/* Dropdown */}
-
         <div className="btn-group">
           <button
             type="button"
@@ -64,33 +64,54 @@ export const NavOutlet = () => {
             aria-expanded="false"
           >
             <img
-              src="https://www.tutorialrepublic.com/examples/images/avatar/3.jpg"
+              src={`${
+                loggedUser?.photoURL ? loggedUser.photoURL : defaultUser
+              }`}
               className="avatar"
+              style={{ width: "30px" }}
             />
-            <span>Lokesh Pereiro</span>
+            <span>{loggedUser?.displayName}</span>
           </button>
-          <ul className="dropdown-menu">
+
+          <ul className="dropdown-menu p-2 m-0">
             <li>
-              <a className="dropdown-item" href="#">
-                <i className="fa-solid fa-user"></i>
+              <Link to="/profile" className="dropdown-item">
+                <img
+                  style={{
+                    width: "20px",
+                  }}
+                  src={profile}
+                  alt="Profile icon"
+                />
                 <span className="m-2">Profile</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a className="dropdown-item" href="#">
-                <i className="fa-solid fa-sliders"></i>
-                <span className="m-2">Settings</span>
-              </a>
+              <Link to="/my-poke" className="dropdown-item">
+                <img
+                  style={{
+                    width: "20px",
+                  }}
+                  src={pokeball}
+                  alt="Pokeball logo"
+                />
+                <span className="m-2">MyPokemons</span>
+              </Link>
             </li>
 
-            <li>
-              <hr className="dropdown-divider" />
-            </li>
-            <li>
-              <a className="dropdown-item" href="#">
-                <i className="fa-solid fa-right-from-bracket"></i>
+            <hr className="dropdown-divider m-0" />
+
+            <li onClick={handleLogout}>
+              <Link className="dropdown-item">
+                <img
+                  style={{
+                    width: "20px",
+                  }}
+                  src={logout}
+                  alt="logout icon"
+                />
                 <span className="m-2">LogOut</span>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

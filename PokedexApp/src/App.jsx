@@ -1,13 +1,14 @@
 import { AppRouter } from "./router/AppRouter";
-// import { LoginPage } from "./auth/pages/LoginPage";
 import { PokeProvider } from "./pokemons/context";
-
+import { AuthProvider } from "./auth/context";
 function App() {
   return (
     <>
-      <PokeProvider>
-        <AppRouter />
-      </PokeProvider>
+      <AuthProvider>
+        <PokeProvider>
+          <AppRouter />
+        </PokeProvider>
+      </AuthProvider>
     </>
   );
 }
