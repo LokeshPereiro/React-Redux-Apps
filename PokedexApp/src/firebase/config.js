@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore/lite";
 
+// Set values in .env file for security
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
   authDomain: import.meta.env.VITE_AUTH_DOMAIN,
@@ -14,7 +15,8 @@ const firebaseConfig = {
 // Initialize Firebase
 export const FirebaseApp = initializeApp(firebaseConfig);
 
+// Authentication
 export const FirebaseAuth = getAuth(FirebaseApp);
 
-// Future implementations
+// Future implementations (so that logged user has possibility to upload his pokemons)
 export const FirebaseDB = getFirestore(FirebaseApp);

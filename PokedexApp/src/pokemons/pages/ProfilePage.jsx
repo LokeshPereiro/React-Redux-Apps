@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../auth/context";
 import { linkedin, github } from "../../assets/images";
-import { Link } from "react-router-dom";
 
 export const ProfilePage = () => {
   const { loggedUser } = useContext(AuthContext);
@@ -11,15 +10,14 @@ export const ProfilePage = () => {
       <div className="card profileContainer">
         <img
           src={loggedUser?.photoURL}
-          // className="card-img-top"
-          alt={loggedUser.displayName}
+          alt={`${loggedUser.displayName} photo`}
         />
         <div className="card-body">
           <h5 className="card-title text-center">
-            <b>Name:</b> {loggedUser.displayName}
+            <b>Name:</b> {loggedUser?.displayName}
           </h5>
           <p className="card-text  text-center">
-            <b>EmaiL:</b> {loggedUser.email}
+            <b>EmaiL:</b> {loggedUser?.email}
           </p>
 
           <div className="iconContainer">

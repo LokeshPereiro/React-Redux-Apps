@@ -8,6 +8,12 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 
+/* 
+- Created this file so that we don't have to call trycatch statement in our contextProvider again and again. 
+- Import these methods in our AuthContext ask for same args defined here and expose/display to its children
+*/
+
+// Google signup instance
 const googleProvider = new GoogleAuthProvider();
 
 export const registerUserWithEmailAndPassword = async ({
@@ -21,14 +27,16 @@ export const registerUserWithEmailAndPassword = async ({
       email,
       password
     );
+    // info available in (result.user)
     const userData = result.user;
 
-    // updateProfile es necesario para mostra el nombre!
+    // updateProfile is need iif you want to display current user name, otherwise it will be null!
     await updateProfile(userData, { displayName });
 
     return userData;
   } catch (error) {
     return {
+      // Did it this way so that we could access easily errorMessage & response type
       ok: false,
       errorMessage: error.message,
     };
@@ -42,8 +50,7 @@ export const loginWithEmailAndPassword = async ({ email, password }) => {
       email,
       password
     );
-    // console.log(result);
-    // Estas propiedades se genera automaticamente por lo que los desestructuro y los mando tambien
+    //  Can also send data this way
     const { photoURL, uid, displayName } = result.user;
     return {
       ok: true,
@@ -61,15 +68,13 @@ export const loginWithEmailAndPassword = async ({ email, password }) => {
 
 export const singInWithGoogle = async () => {
   try {
-    // mi config + el proveedor google
+    // Need firebase credential + google instance
     const result = await signInWithPopup(FirebaseAuth, googleProvider);
 
     const { displayName, photoURL, email, uid } = result.user;
-    // console.log(user);
 
     return {
       ok: true,
-      //  UserInfo
       displayName,
       photoURL,
       email,

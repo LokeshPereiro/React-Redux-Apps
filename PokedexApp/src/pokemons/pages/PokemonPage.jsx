@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { PokeContext } from "../context";
-import { Loader } from "../components";
+import { Loader } from "../../ui";
 
-import { primerMayuscula } from "../../helper";
+import { capitalLetter } from "../../helper";
 
 export const PokemonPage = () => {
   const { getPokemonByID } = useContext(PokeContext);
@@ -44,7 +44,7 @@ export const PokemonPage = () => {
               </div>
 
               <div className="container-info-pokemon">
-                <h1>{primerMayuscula(pokemon.name)}</h1>
+                <h1>{capitalLetter(pokemon.name)}</h1>
                 <div className="card-types info-pokemon-type">
                   {pokemon.types.map((type) => (
                     <span key={type.type.name} className={`${type.type.name}`}>
@@ -54,11 +54,11 @@ export const PokemonPage = () => {
                 </div>
                 <div className="info-pokemon">
                   <div className="group-info">
-                    <p>Altura</p>
+                    <p>Height</p>
                     <span>{pokemon.height}</span>
                   </div>
                   <div className="group-info">
-                    <p>Peso</p>
+                    <p>Weight</p>
                     <span>{pokemon.weight}KG</span>
                   </div>
                 </div>
@@ -66,7 +66,7 @@ export const PokemonPage = () => {
             </div>
 
             <div className="container-stats">
-              <h1>Estadísticas</h1>
+              <h1>Statistics</h1>
               <div className="stats">
                 <div className="stat-group">
                   <span>Hp</span>

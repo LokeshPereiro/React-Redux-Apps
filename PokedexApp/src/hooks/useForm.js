@@ -7,6 +7,7 @@ export const useForm = (initialForm = {}) => {
     const { name, value } = target;
 
     setFormState({
+      // set name property values
       ...formState,
       [name]: value,
     });

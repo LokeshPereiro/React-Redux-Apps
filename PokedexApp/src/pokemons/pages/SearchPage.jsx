@@ -1,7 +1,9 @@
 import { useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { PokeContext } from "../context";
-import { Loader, PokeCard } from "../components";
+import { PokeCard } from "../components";
+import { Loader } from "../../ui";
+
 export const SearchPage = () => {
   const location = useLocation();
   // console.log(location);
@@ -16,7 +18,7 @@ export const SearchPage = () => {
   return (
     <div className="container">
       <p className="p-search">
-        Se encontraron <span>{filteredPokemons.length}</span> resultados:
+        We found <span>{filteredPokemons.length}</span> pokemons:
       </p>
       {loading ? (
         <Loader />

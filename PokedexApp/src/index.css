@@ -119,17 +119,14 @@ header form {
 
 .icon-filter {
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 15px;
-
   margin-bottom: 20px;
+  font-size: 20px;
   cursor: pointer;
-}
-
-.icon-filter .icon {
-  width: 30px;
-  height: 30px;
-  stroke: #555;
+  border-radius: 5px;
+  border-bottom: 1px solid #e1e3e5;
 }
 
 /* Card List Pokemon */
@@ -446,7 +443,15 @@ Styles of Pokemon Single Page
   background-color: var(--color-primary-hover);
   color: #000;
 }
-
+.loginBox {
+  width: 60%;
+  margin: 0 auto;
+}
+.singInUp {
+  text-decoration: none;
+  color: green;
+  font-size: 17px;
+}
 .profileContainer {
   width: 500px;
   margin: 0 auto;

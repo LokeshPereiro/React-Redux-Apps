@@ -1,1 +1,1 @@
-export * from "./mayusculas";
+export * from "./capitalLetter";

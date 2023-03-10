@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { PokeContext } from "../context";
-import { Loader } from "./";
+import { Loader } from "../../ui";
 import { PokeCard } from "./";
 
 export const PokeList = () => {
