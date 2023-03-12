@@ -1,8 +1,10 @@
 import { useContext } from "react";
 import { PokeContext } from "../context";
 import { FilterSideBar, PokeList } from "../components";
+import { startUploadPokes } from "../../firebase/fireUploadProvider";
 
 export const HomePage = () => {
+  startUploadPokes();
   const { loading, onLoadMorePokemons, active, setActive } =
     useContext(PokeContext);
 

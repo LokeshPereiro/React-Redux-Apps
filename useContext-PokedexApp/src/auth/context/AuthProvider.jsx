@@ -9,7 +9,7 @@ import {
   logOutFirebase,
   registerUserWithEmailAndPassword,
   singInWithGoogle,
-} from "../../firebase/fireProvider";
+} from "../../firebase/fireAuthProvider";
 
 export const AuthProvider = ({ children }) => {
   const [loggedUser, setLoggedUser] = useState();

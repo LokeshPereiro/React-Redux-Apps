@@ -10,6 +10,7 @@ export const SearchPage = () => {
 
   const { loading, globalPokemons } = useContext(PokeContext);
 
+  // gobal pokemons arr, filtering only the pokemons that has similiar name to searchedFiled
   const filteredPokemons = globalPokemons.filter((pokemon) =>
     pokemon.name.includes(location.state)
   );
