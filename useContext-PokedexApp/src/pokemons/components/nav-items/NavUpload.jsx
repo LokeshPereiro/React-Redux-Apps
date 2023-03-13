@@ -49,6 +49,7 @@ export const NavUpload = () => {
               <h4 className="text-center p-3 m-0 text-white">
                 Upload your fav pokemons
               </h4>
+
               <p>{dateInString}</p>
             </div>
             {/* body */}
@@ -76,9 +77,16 @@ export const NavUpload = () => {
                   className="form-control mb-3"
                   type="file"
                 />
-
-                <div className="d-grid">
-                  <button type="submit" className="btn btn-sm btn-success">
+                {/* Action buttons */}
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="submit" class="btn btn-success">
                     Upload
                   </button>
                 </div>

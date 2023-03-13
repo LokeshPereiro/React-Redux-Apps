@@ -1,11 +1,12 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context";
 import { useForm } from "../../hooks";
 import { google } from "../../assets/images";
 import { Loader } from "../../ui";
+
 export const LoginPage = () => {
-  const { loginProvider, registerWithGoogle, loading } =
+  const { loginProvider, registerWithGoogle, loading, errorMsg } =
     useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -35,6 +36,13 @@ export const LoginPage = () => {
       ) : (
         <div className="p-4 box loginBox">
           <h2 className="text-center">Firebase Login</h2>
+
+          {errorMsg && (
+            <h6 className="alert alert-danger text-center p-1">
+              Wrong email or password
+            </h6>
+          )}
+
           <form onSubmit={handleLogIn}>
             <input
               className="form-control mb-3"
@@ -53,6 +61,7 @@ export const LoginPage = () => {
               value={password}
               onChange={onInputChange}
             />
+
             <div className="d-grid gap-2">
               <button type="submit" className="btn btn-sm btn-secondary">
                 LogIn

@@ -127,6 +127,7 @@ export const PokeProvider = ({ children }) => {
   const onLoadMorePokemons = () => {
     setOffset(offset + 50);
   };
+
   return (
     <PokeContext.Provider
       value={{

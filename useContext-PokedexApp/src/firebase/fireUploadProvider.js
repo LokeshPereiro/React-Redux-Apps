@@ -5,7 +5,7 @@ export const startUploadPokes = async (uid) => {
   try {
     const newPoke = {
       displaName: "",
-      poiwer: "",
+      power: "",
       date: new Date().getTime(),
     };
     const newDoc = doc(collection(FirebaseDB, `${uid}/pokeapp/pokes`));

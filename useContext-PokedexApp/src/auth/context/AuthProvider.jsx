@@ -14,15 +14,20 @@ import {
 export const AuthProvider = ({ children }) => {
   const [loggedUser, setLoggedUser] = useState();
   const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(false);
 
   // Register user
   const registerProvider = async ({ email, password, displayName }) => {
-    setLoading(true);
-    await registerUserWithEmailAndPassword({
-      email,
-      password,
-      displayName,
-    });
+    if ((email, password, displayName)) {
+      setLoading(true);
+      await registerUserWithEmailAndPassword({
+        email,
+        password,
+        displayName,
+      });
+    } else {
+      setErrorMsg(true);
+    }
   };
 
   // Register/login user with google
@@ -33,8 +38,12 @@ export const AuthProvider = ({ children }) => {
 
   // Login with credentials
   const loginProvider = async ({ email, password }) => {
-    setLoading(true);
-    await loginWithEmailAndPassword({ email, password });
+    if ((email, password)) {
+      setLoading(true);
+      await loginWithEmailAndPassword({ email, password });
+    } else {
+      setErrorMsg(true);
+    }
   };
 
   // logout
@@ -64,6 +73,7 @@ export const AuthProvider = ({ children }) => {
         registerWithGoogle,
         logOut,
         loading,
+        errorMsg,
       }}
     >
       {children}
